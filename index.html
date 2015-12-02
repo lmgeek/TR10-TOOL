@@ -19,22 +19,73 @@
     </section>
 
     <section class="main-content">
-      <h3>
-<a id="advertencia" class="anchor" href="#advertencia" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advertencia</h3>
+      <h1>
+<a id="advertencia" class="anchor" href="#advertencia" aria-hidden="true"><span class="octicon octicon-link"></span></a>Advertencia</h1>
+
+<hr>
 
 <p>Esta herramienta fue desarrollada con fines educativos, cada persona es responsable de su uso y de los posibles daños ocasionados a los equipos con los que se utilice el script !</p>
 
-<h3>
-<a id="información" class="anchor" href="#informaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Información</h3>
+<hr>
 
-<p>Este script fue escrito en Bash para entornos Gnu/Linux usando la ultima versión de adb y fastboot del sdk alone tools para Gnu/Linux. Script pensado para ser utilizado con los modelos TR10CS1 y TR10RS1 de intel entregadas por el estado venezolano a estudiantes universitarios. #CanaimaUniversitario  </p>
+<h1>
+<a id="información" class="anchor" href="#informaci%C3%B3n" aria-hidden="true"><span class="octicon octicon-link"></span></a>Información</h1>
 
-<h3>
-<a id="pasos-para-utilizar-la-herramienta" class="anchor" href="#pasos-para-utilizar-la-herramienta" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pasos para utilizar la herramienta</h3>
+<p>Este script fue escrito en Bash para entornos Gnu/Linux usando la ultima versión de adb y fastboot del sdk alone tools para Gnu/Linux. Script pensado para ser utilizado con los modelos TR10CS1 y TR10RS1 de intel entregadas por el estado venezolano a estudiantes universitarios. #CanaimaUniversitario</p>
+
+<h1>
+<a id="pasos-para-utilizar-la-herramienta" class="anchor" href="#pasos-para-utilizar-la-herramienta" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pasos para utilizar la herramienta</h1>
+
+<p>Usualmente puede pasar que en Gnu/Linux (dependiendo de la distribución) no reconozca de buenas a primeras tu dispositivo y por tal razón sea imposible que pueda comunicarse con el vía adb o fastboot. Si este es tu caso tendrás que hacer ciertas cosas antes de empezar a utilizar esta herramienta (Si este no es tu caso ve directo a Preparando el dispositivo).</p>
+
+<h2>
+<a id="preparando-el-sistema" class="anchor" href="#preparando-el-sistema" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preparando el sistema:</h2>
+
+<p>Este procedimiento seria el equivalente a instalar los drivers en un sistema privativo como Windows para poder reconocer el dispositivo, estos son los pasos a seguir:</p>
+
+<pre><code>1 - Conectar el dispositivo al Pc Gnu/Linux y en un terminal entrar como root:
+    https://raw.githubusercontent.com/neocarvajal/TR10-TOOL/master/IMAGES/1.png
+
+2 - Listar los dispositivos conectados via USB y copiar el vendor_id 
+    (podria solo mostrar hasta el ID resaltado sin el nombre de la compañia):
+    https://raw.githubusercontent.com/neocarvajal/TR10-TOOL/master/IMAGES/2.png
+
+3 - Crear una regla en la siguiente ruta /etc/udev/rules.d/51-android.rules (si ya existe ve al siguiente paso).
+    https://raw.githubusercontent.com/neocarvajal/TR10-TOOL/master/IMAGES/3.png
+
+4 - Con tu editor de texto preferido abre el archivo creado(/etc/udev/rules.d/51-android.rules).
+    Copia y pega esta cadena en el archivo :
+
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="",ATTRS{idProduct}=="", MODE="0666"
+
+    En el mismo orden que aparece el ID del dispositivo en el segundo paso, 
+    reemplazalos en esta cadena en el mismo orden y guarda los cambios.
+    En este caso seria:
+
+    https://raw.githubusercontent.com/neocarvajal/TR10-TOOL/master/IMAGES/6.png
+
+5 - En el terminal reinicia el servicio udev :
+    https://raw.githubusercontent.com/neocarvajal/TR10-TOOL/master/IMAGES/7.png
+</code></pre>
+
+<h2>
+<a id="preparando-el-dispositivo-" class="anchor" href="#preparando-el-dispositivo-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preparando el dispositivo :</h2>
+
+<pre><code>1 - Entrar  en Configuración/Acerca de la tablet/ y precionar varias veces en el Numero de Compilación.   
+https://raw.githubusercontent.com/neocarvajal/TR10-TOOL/master/IMAGES/4.png
+
+2 - Entrar en Configuración/Menú desarrollador/Depuración USB.   
+https://raw.githubusercontent.com/neocarvajal/TR10-TOOL/master/IMAGES/5.png
+</code></pre>
+
+<hr>
+
+<h1>
+<a id="configurando-tr10-tool" class="anchor" href="#configurando-tr10-tool" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configurando TR10-TOOL</h1>
 
 <p>1 - Descargar el zip/tar.gz de la repo y descomprimir.</p>
 
-<p>2 - Descargar gapps (.zip) y ubicarlo en la carpeta GAPPS con el nombre que tiene el archivo.txt en el mismo directorio. Link descarga GAPPS : <a href="http://opengapps.org/">http://opengapps.org/</a> (Android x86 4.4 / Cualquier variante)</p>
+<p>2 - Descargar gapps (.zip) y ubicarlo en la carpeta GAPPS con el nombre que tiene el archivo.txt en el mismo directorio. Link descarga GAPPS : <a href="http://opengapps.org/">http://opengapps.org/</a> (Android x86 4.4 / Cualquier variante).</p>
 
 <p>3 - Activar la depuración USB en el dispositivo y aceptar como RSA de confianza (seǵun sea el caso).</p>
 
@@ -42,25 +93,25 @@
 
 <p>5 - Mientras no tengas las gapps no ejecutar la función 1 (no hay problemas solo mostrara el error de que no encuentra el fichero).</p>
 
-<h3>
-<a id="video-guía" class="anchor" href="#video-gu%C3%ADa" aria-hidden="true"><span class="octicon octicon-link"></span></a>Video Guía</h3>
+<h1>
+<a id="video-guía" class="anchor" href="#video-gu%C3%ADa" aria-hidden="true"><span class="octicon octicon-link"></span></a>Video Guía</h1>
 
 <p><a href="https://www.youtube.com/watch?v=Cm7QASoZeWk">https://www.youtube.com/watch?v=Cm7QASoZeWk</a></p>
 
-<h3>
-<a id="desarrollador" class="anchor" href="#desarrollador" aria-hidden="true"><span class="octicon octicon-link"></span></a>Desarrollador</h3>
+<h1>
+<a id="desarrollador" class="anchor" href="#desarrollador" aria-hidden="true"><span class="octicon octicon-link"></span></a>Desarrollador</h1>
 
-<p>T.S.U Erick Carvajal R. Estudiante universitario en la <a href="http://uptos.edu.ve/">UPTOS "Clodosbaldo Russiían"</a>. Usuario Gnu/Linux desde 2009.</p>
+<p>T.S.U Erick Carvajal R. Estudiante universitario en la UPTOS "Clodosbaldo Russiían". Usuario Gnu/Linux desde 2009.</p>
 
-<h3>
-<a id="meta" class="anchor" href="#meta" aria-hidden="true"><span class="octicon octicon-link"></span></a>Meta</h3>
+<h1>
+<a id="meta" class="anchor" href="#meta" aria-hidden="true"><span class="octicon octicon-link"></span></a>Meta</h1>
 
 <p>Crear una herramienta con más opciones y mucho más universal como si se tratara de una Suite tipo (kies) que permita gestionar el dispositivo facilmente en tareas comunes(respaldos, copiar archivos entre un pc y el dispositivo entre otros), manteniendo las opciones "avanzadas" como flashear Cunstom Recovery.</p>
 
-<h3>
-<a id="soportecontacto" class="anchor" href="#soportecontacto" aria-hidden="true"><span class="octicon octicon-link"></span></a>Soporte/Contacto</h3>
+<h1>
+<a id="soportecontacto" class="anchor" href="#soportecontacto" aria-hidden="true"><span class="octicon octicon-link"></span></a>Soporte/Contacto</h1>
 
-<p>Para discuciones en cuanto al desarrollo y mejoras del script puedes visitar el foro : <a href="http://tabletcanaima.com.ve">http://tabletcanaima.com.ve</a> y adicionalmente puedes encontrarme en #Twitter como <a href="https://www.twitter.com/neocarvajal">@neocarvajal</a></p>
+<p>Para discuciones en cuanto al desarrollo y mejoras del script puedes visitar el foro : <a href="http://tabletcanaima.com.ve">http://tabletcanaima.com.ve</a> y adicionalmente puedes encontrarme en #Twitter como <a href="https://github.com/neocarvajal" class="user-mention">@neocarvajal</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/neocarvajal/TR10-TOOL">TR10 TOOL </a> is maintained by <a href="https://github.com/neocarvajal">neocarvajal</a>.</span>
